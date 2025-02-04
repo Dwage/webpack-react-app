@@ -1,4 +1,4 @@
-import { BuildOptions } from 'config/build/types/config'
+import { BuildOptions } from './types/config'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import webpack from 'webpack'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
