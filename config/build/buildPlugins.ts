@@ -2,8 +2,9 @@ import { BuildOptions } from './types/config'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import webpack from 'webpack'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
-export function buildPlugins({ paths }: BuildOptions): webpack.WebpackPluginInstance[] {
-  return [
+import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin'
+export function buildPlugins({ paths, isDev }: BuildOptions) {
+  const plugins: webpack.WebpackPluginInstance[] = [
     new HtmlWebpackPlugin({
       template: paths.html,
     }),
@@ -12,5 +13,14 @@ export function buildPlugins({ paths }: BuildOptions): webpack.WebpackPluginInst
       chunkFilename: 'css/[name].[contenthash:8].css',
     }),
     new webpack.ProgressPlugin(),
+    new webpack.DefinePlugin({
+      __IS_DEV__: JSON.stringify(isDev),
+    }),
   ]
+
+  if (isDev) {
+    plugins.push(new webpack.HotModuleReplacementPlugin())
+    plugins.push(new ReactRefreshWebpackPlugin())
+  }
+  return plugins
 }

@@ -1,17 +1,24 @@
 import './styles/index.scss'
 import { classNames } from 'shared/lib/classNames'
-import { useTheme } from './providers/ThemeProvider/lib/useTheme'
+import { useTheme } from './providers/ThemeProvider'
 import { AppRouter } from './providers/router'
-import { Navbar } from 'widgets/NavBar'
+import { Navbar } from 'widgets/Navbar'
+import { Sidebar } from 'widgets/Sidebar'
+import { Suspense } from 'react'
+import { useTranslation } from 'react-i18next'
 
 const App = () => {
-  const { toggleTheme, theme } = useTheme()
+  const { theme } = useTheme()
 
   return (
-    <div className={classNames('app', {}, [theme])}>
-      <Navbar />
-      <AppRouter />
-      <button onClick={toggleTheme}>Toggle theme</button>
+    <div className={classNames('app', null, [theme])}>
+      <Suspense fallback="">
+        <Navbar />
+        <div className="content-page">
+          <Sidebar />
+          <AppRouter />
+        </div>
+      </Suspense>
     </div>
   )
 }
