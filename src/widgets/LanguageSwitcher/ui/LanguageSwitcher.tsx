@@ -1,7 +1,7 @@
 import { classNames } from 'shared/lib/classNames'
-import classes from './LanguageSwitcher.module.scss'
 import { useTranslation } from 'react-i18next'
 import { Button, ThemeButtom } from 'shared/ui/Button/Button'
+import classes from './LanguageSwitcher.module.scss'
 
 interface LanguageSwitcherProps {
   className?: string

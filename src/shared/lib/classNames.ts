@@ -1,12 +1,17 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 type Mods = Record<string, boolean | string>
 
-export function classNames(className: string, mods?: Mods, additional?: string[]): string {
+export function classNames(
+  className: string,
+  mods?: Mods,
+  additional?: string[],
+): string {
   return [
     className,
     mods
       ? Object.entries(mods)
-          .filter(([_, value]) => Boolean(value))
-          .map(([className]) => className)
+        .filter(([_, value]) => Boolean(value))
+        .map(([className]) => className)
       : [],
     ...(additional ?? []),
   ].join(' ')
