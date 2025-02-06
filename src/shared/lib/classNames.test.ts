@@ -31,7 +31,7 @@ describe('classNames', () => {
   })
 
   test('Filters out falsy values in mods', () => {
-    expect(classNames('base-class', { active: false, visible: '1', theme: '' }))
+    expect(classNames('base-class', { active: false, visible: '', theme: '' }))
       .toBe('base-class')
   })
 })
