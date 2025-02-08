@@ -1,0 +1,22 @@
+{
+  "FSD Component": {
+    "prefix": "crc",
+    "body": [
+      "import { classNames } from 'shared/lib/classNames';",
+      "import classes from './${TM_FILENAME_BASE}.module.scss';",
+      "",
+      "interface ${TM_FILENAME_BASE}Props {",
+      "  className?: string;",
+      "}",
+      "",
+      "export const ${TM_FILENAME_BASE} = ({ className }: ${TM_FILENAME_BASE}Props) => {",
+      "  return (",
+      "    <div className={classNames(classes., {}, [className])}>",
+      "      $0",
+      "    </div>",
+      "  );",
+      "};"
+    ],
+    "description": "FSD React component with classNames and SCSS module"
+  }
+}
