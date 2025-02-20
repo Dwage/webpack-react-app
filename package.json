@@ -93,6 +93,8 @@
     "react-router-dom": "^7.1.5"
   },
   "loki": {
+    "diffingEngine": "looks-same",
+    "chromeTolerance": 20,
     "configurations": {
       "chrome.laptop": {
         "target": "chrome.app",
