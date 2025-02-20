@@ -1,13 +1,12 @@
-import type { Meta, StoryObj } from "@storybook/react"
+import type { Meta, StoryObj } from '@storybook/react'
 
-import { Button, ThemeButtom } from "./Button"
+import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator'
+import { Theme } from 'app/providers/ThemeProvider'
+import { Button, ThemeButton } from './Button'
 
 const meta = {
-  title: "shared/Button",
+  title: 'shared/Button',
   component: Button,
-  argTypes: {
-    backgroundColor: { control: "color" },
-  },
 } satisfies Meta<typeof Button>
 
 export default meta
@@ -15,20 +14,28 @@ type Story = StoryObj<typeof meta>
 
 export const Primary: Story = {
   args: {
-    children: "text",
+    children: 'text',
   },
 }
 
 export const Clear: Story = {
   args: {
-    children: "text",
-    theme: ThemeButtom.CLEAR,
+    children: 'text',
+    theme: ThemeButton.CLEAR,
   },
 }
 
 export const Outlined: Story = {
   args: {
-    children: "text",
-    theme: ThemeButtom.OUTLINE,
+    children: 'text',
+    theme: ThemeButton.OUTLINE,
   },
 }
+
+export const OutlineDark: Story = {
+  args: {
+    children: 'Text',
+    theme: ThemeButton.OUTLINE,
+  },
+}
+OutlineDark.decorators = [ThemeDecorator(Theme.DARK)]

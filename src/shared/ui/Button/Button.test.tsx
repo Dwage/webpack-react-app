@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react'
-import { Button, ThemeButtom } from './Button'
+import { Button, ThemeButton } from './Button'
 
 describe('button', () => {
   test('with only first param', () => {
@@ -8,7 +8,7 @@ describe('button', () => {
     expect(button).toBeInTheDocument()
   })
   test('clear class for test', () => {
-    render(<Button theme={ThemeButtom.CLEAR}>click</Button>)
+    render(<Button theme={ThemeButton.CLEAR}>click</Button>)
     const button = screen.getByRole('button')
     expect(button).toHaveClass('clear')
   })
