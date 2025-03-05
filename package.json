@@ -12,7 +12,10 @@
     "lint:scss:fix": "npx stylelint \"**/*.scss\" --fix",
     "test:unit": "jest --config ./config/jest/jest.config.ts",
     "test:ui": "npx loki --chromeConcurrency 1 test",
-    "test:ui:ci": "npx loki --chromeConcurrency 1 --reactUri http://localhost:6006",
+    "test:ui:ci": "npx loki --chromeConcurrency 1 --requireReference --reactUri file:./storybook-static",
+    "test:ui:report": "npm run test:ui:json && npm run test:ui:html",
+    "test:ui:json": "node scripts/generate-visual-json-report.js",
+    "test:ui:html": "reg-cli --from .loki/report.json --report .loki/report.html",
     "storybook": "storybook dev -p 6006 -c ./config/storybook",
     "storybook:build": "storybook build -c ./config/storybook"
   },
@@ -68,6 +71,7 @@
     "loki": "^0.35.1",
     "mini-css-extract-plugin": "^2.9.2",
     "react-refresh": "^0.16.0",
+    "reg-cli": "^0.18.10",
     "sass": "^1.83.4",
     "sass-loader": "^16.0.4",
     "storybook": "^8.5.6",
@@ -93,8 +97,6 @@
     "react-router-dom": "^7.1.5"
   },
   "loki": {
-    "diffingEngine": "looks-same",
-    "chromeTolerance": 20,
     "configurations": {
       "chrome.laptop": {
         "target": "chrome.app",

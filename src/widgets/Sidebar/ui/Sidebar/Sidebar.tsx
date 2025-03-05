@@ -4,6 +4,7 @@ import { ThemeSwitcher } from 'widgets/ThemeSwitcher'
 import { LanguageSwitcher } from 'widgets/LanguageSwitcher'
 import { BugButton } from 'app/providers/ErrorBoundary'
 import classes from './Sidebar.module.scss'
+import { Button, ButtonTheme } from 'shared/ui/Button/Button'
 
 interface SidebarProps {
   className?: string
@@ -21,10 +22,17 @@ export const Sidebar = ({ className }: SidebarProps) => {
       className={classNames(
         classes.sidebar,
         { [classes.collapsed]: collapsed },
-        [className],
+        [className]
       )}
     >
-      <button type="button" onClick={onToggle}>toggle</button>
+      <Button
+        data-testid="sidebar-toggle"
+        onClick={onToggle}
+        className={classes.collapseBtn}
+        theme={ButtonTheme.BACKGROUND}
+      >
+        {collapsed ? '>' : '<'}
+      </Button>
       <BugButton />
       <div className={classes.switchers}>
         <ThemeSwitcher />
