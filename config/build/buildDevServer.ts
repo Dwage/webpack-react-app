@@ -1,13 +1,11 @@
 import { BuildOptions } from './types/config'
 
 export function buildDevServer(options: BuildOptions) {
-  const { paths, port } = options
+  const { port } = options
   return {
-    // static: {
-    //   directory: paths.build,
-    // },
-    //compress: true,
-    port: port,
+    port,
     open: true,
+    historyApiFallback: true,
+    hot: true,
   }
 }

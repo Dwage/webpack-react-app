@@ -3,18 +3,20 @@ import { BuildOptions } from './types/config'
 import { buildLoaders } from './buildLoaders'
 import { buildPlugins } from './buildPlugins'
 import { buildResolvers } from './buildResolvers'
-import webpackDevServer from 'webpack-dev-server'
 import { buildDevServer } from './buildDevServer'
+import 'webpack-dev-server'
 
-export function buildWebpackConfig(options: BuildOptions): webpack.Configuration {
+export function buildWebpackConfig(
+  options: BuildOptions,
+): webpack.Configuration {
   const { mode, paths, isDev } = options
   return {
-    mode: mode,
+    mode,
     entry: paths.entry,
     module: {
       rules: buildLoaders(options),
     },
-    resolve: buildResolvers(),
+    resolve: buildResolvers(options),
     output: {
       filename: '[name].[contenthash].js',
       path: paths.build,
